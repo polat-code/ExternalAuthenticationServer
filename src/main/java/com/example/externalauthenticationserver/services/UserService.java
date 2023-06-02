@@ -19,7 +19,7 @@ public class UserService {
         User user = userRepository.findByEmail(credentialReq.getEmail());
 
         // Validate email and password
-        if(!user.getEmail().equals(credentialReq.getEmail()) || !user.getPassword().equals(credentialReq.getPassword())){
+        if((user == null) || !user.getPassword().equals(credentialReq.getPassword())){
             throw new InvalidEmailOrPasswordException("Invalid Email or Password");
         }
 
