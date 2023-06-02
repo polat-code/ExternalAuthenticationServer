@@ -9,8 +9,6 @@ public class UserCredentialReq {
 
     @NonNull
     private String email;
-    @NonNull
-    private String password;
 
     public UserCredentialReq() {
     }

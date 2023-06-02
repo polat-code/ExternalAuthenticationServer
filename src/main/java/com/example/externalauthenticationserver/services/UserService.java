@@ -20,6 +20,14 @@ public class UserService {
             throw new UserAlreadyRegisterException("This user already was registered!");
         }
 
-
+        GetRequiredInfoResponse responseUser = new GetRequiredInfoResponse().builder()
+                .name(user.getName())
+                .surname(user.getSurname())
+                .departmentName(user.getDepartmentName())
+                .email(user.getEmail())
+                .grade(user.getGrade())
+                .studentNumber(user.getStudentNumber())
+                .build();
+        return  responseUser;
     }
 }
