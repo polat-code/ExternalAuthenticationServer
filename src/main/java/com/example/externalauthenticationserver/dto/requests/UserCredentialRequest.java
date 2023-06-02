@@ -5,11 +5,11 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @Builder
-public class UserCredentialReq {
+public class UserCredentialRequest {
 
     @NonNull
     private String email;
 
-    public UserCredentialReq() {
+    public UserCredentialRequest() {
     }
 }

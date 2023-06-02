@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GetRequiredInfoResponse {
+public class RegistrationResponse {
 
     private String name;
 
