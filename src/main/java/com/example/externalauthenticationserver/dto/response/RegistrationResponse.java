@@ -22,4 +22,5 @@ public class RegistrationResponse {
     private String studentNumber;
 
     private String departmentName;
+    private Boolean isAdmin;
 }

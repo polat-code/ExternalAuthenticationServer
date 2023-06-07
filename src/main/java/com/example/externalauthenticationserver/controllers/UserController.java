@@ -6,21 +6,25 @@ import com.example.externalauthenticationserver.exceptions.InvalidEmailOrPasswor
 import com.example.externalauthenticationserver.exceptions.UserAlreadyRegisterException;
 import com.example.externalauthenticationserver.services.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/user")
-
+@RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     private UserService userService;
-    @PostMapping("")
+
+    @PostMapping("/user/register-info")
     public RegistrationResponse register(@RequestBody UserCredentialRequest credentialReq) throws InvalidEmailOrPasswordException {
         return this.userService.register(credentialReq);
+    }
+
+    @PostMapping("/log-in")
+    public ResponseEntity<Object> logIn(@RequestBody UserCredentialRequest credentialReq){
+        return this.userService.logIn(credentialReq);
     }
 
 }

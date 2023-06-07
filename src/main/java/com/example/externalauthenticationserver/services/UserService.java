@@ -7,6 +7,8 @@ import com.example.externalauthenticationserver.exceptions.UserAlreadyRegisterEx
 import com.example.externalauthenticationserver.models.User;
 import com.example.externalauthenticationserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +32,21 @@ public class UserService {
                 .email(user.getEmail())
                 .grade(user.getGrade())
                 .studentNumber(user.getStudentNumber())
+                .isAdmin(user.getIsAdmin())
                 .build();
         return  responseUser;
+    }
+
+    public ResponseEntity<Object> logIn(UserCredentialRequest credentialReq) {
+        User user = userRepository.findByEmail(credentialReq.getEmail());
+        // If there is no value then method returns 404 status code.
+        if(user == null) {
+            return new ResponseEntity<>("There is no such a user Email " + credentialReq.getEmail(), HttpStatus.NOT_FOUND);
+        }
+        if(user.getPassword().equals(credentialReq.getPassword()) && user.getEmail().equals(credentialReq.getEmail())) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("Email or password is wrong",HttpStatus.NOT_ACCEPTABLE);
     }
 }

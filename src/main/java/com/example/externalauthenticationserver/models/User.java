@@ -34,6 +34,9 @@ public class User {
     @Column(name = "student_number")
     private String studentNumber;
 
-    @Column
+    @Column(name = "department_name ")
     private String departmentName;
+
+    @Column(name = "is_admin")
+    private Boolean isAdmin;
 }
